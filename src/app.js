@@ -6,9 +6,17 @@ const staticPath = path.join(__dirname,"../public")
 
 app.use("/docs",express.static(staticPath))
 
-app.get("/", (req,res)=>{
-    res.json("Hello, This project is made by Aishwarya ");
+app.get("/", (req, res) => {
+    res.json({
+        message: "Hello, This project is made by Aishwarya",
+        urls: {
+            allSubscribers: "http://localhost:3000/subscribers - gives all objects with the list of all channels, their owner, their channel name, and the subscribed date",
+            subscribersByName: "http://localhost:3000/subscribers/name - gives all objects with the owner name and their channel name",
+            subscriberById: "http://localhost:3000/subscribers/id - gives the object with the particular id"
+        }
+    });
 });
+
 
 // sending GET request to get subscribers list 
 app.get("/subscribers", async(req, res)=>{
